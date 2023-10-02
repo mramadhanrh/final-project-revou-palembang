@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Merdeka Palembang</title>
+  </head>
+  <body>
+    Book Form
+    <form id="book-form">
+      <div>
+        <p>Title:</p>
+        <input id="title" name="title" type="text" />
+      </div>
+
+      <div>
+        <p>Release Year:</p>
+        <input id="releaseYear" name="releaseYear" type="date" />
+      </div>
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      const handleSubmitForm = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+
+        fetch("/api/books", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: formData.get("title"),
+            releaseYear: formData.get("releaseYear"),
+          }),
+        });
+      };
+
+      document.getElementById("book-form").onsubmit = handleSubmitForm;
+    </script>
+  </body>
+</html>
