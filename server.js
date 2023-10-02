@@ -16,7 +16,10 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.raw());
 app.use(bodyParser.json());
 
+app.use(express.static("node_modules/bootstrap/dist"));
 app.use(express.static("public"));
+
+app.use("/books", express.static("public/books.html"));
 
 app.use("/api/books", booksRouter);
 
