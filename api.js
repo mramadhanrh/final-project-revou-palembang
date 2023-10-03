@@ -6,7 +6,6 @@ import { startSequelize } from "./utils/startSequelize.js";
 
 import "./models/index.js";
 import booksRouter from "./routes/books.js";
-import ServerlessHttp from "serverless-http";
 
 dotenv.config();
 
@@ -33,6 +32,3 @@ app.use(`/.netlify/functions/api`, router);
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`);
 });
-
-export const handler = ServerlessHttp(app);
-export default app;
